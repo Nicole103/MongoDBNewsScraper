@@ -54,10 +54,25 @@ var newScrape = function(){
             if(data.length>0){
                 var $arts = data.map(function(artic){
                     var $li = $("<li>"):
-                    var saveBtn = $("<button").addClass("btn btn-primary btn-sm").attr("type", "submit").attr("name", "action").text("Save Article");
-                    
-                })
+                    var saveBtn = $("<button>").addClass("btn btn-primary btn-sm").attr("type", "submit").attr("name", "action").text("Save Article");
+                    var title = $("<div>").text(artic.title).addClass("collapsible-header");
+                    var span = $("<a>").attr("href", artic.link).attr("target", "_blank").append($("<span>").text(artic.summary));
+                    var body = $("<div>").attr("data-id", artic._id).addClass("collapsible-body").append(span).append(saveButton);
+    
+                    $li.append(title).append(body);
+    
+                    return $li;
+                });
+                $("#scrapeResults").append($arts);
             }
-        })
-    })
-}
+            else {
+                var $li = $("<li>");
+    
+                var title = $("<h5>").text("No More Articles. Get Scraping By Clicking The Button Above!").addClass("center-align");
+    
+                $li.append(title);
+                $("#scrapeResults").append($li);
+            }
+        });
+    });
+};
