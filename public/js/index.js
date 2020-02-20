@@ -76,3 +76,12 @@ var newScrape = function(){
         });
     });
 };
+
+//get articles
+
+//delete all scrapped articles
+
+
+//save article
+
+//adding notes 
